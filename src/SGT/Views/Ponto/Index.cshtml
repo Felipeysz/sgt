@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SGT.Models.Ponto>
+
+@{
+    ViewData["Title"] = "Pontos";
+}
+
+<h1>Pontos</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Criar novo Ponto</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Longitude)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.id })" class="btn btn-info">Detalhes</a>
+                    <a href="@Url.Action("Edit", new { id = item.id })" class="btn btn-warning">Editar</a>
+                    <a href="@Url.Action("Delete", new { id = item.id })" class="btn btn-danger">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

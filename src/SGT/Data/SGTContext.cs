@@ -10,4 +10,5 @@ public class SGTContext : DbContext
     { }
 
     public DbSet<Veiculo> Veiculos { get; set; }
+    public DbSet<Ponto> Pontos { get; set; }
 }

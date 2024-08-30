@@ -1,0 +1,33 @@
+﻿@model SGT.Models.Ponto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Ponto</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+    </dl>
+    <a href="@Url.Action("Index")" class="btn btn-primary">Voltar</a>
+</div>
