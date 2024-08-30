@@ -3,25 +3,24 @@ using Microsoft.EntityFrameworkCore;
 using SGT.Data;
 using SGT.Models;
 
-
 namespace SGT.Controllers
 {
-    public class PontoController : Controller
+    public class PontosController : Controller
     {
         private readonly SGTContext _context;
 
-        public PontoController(SGTContext context)
+        public PontosController(SGTContext context)
         {
             _context = context;
         }
 
-        // GET: Ponto
+        // GET: Pontos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Pontos.ToListAsync());
         }
 
-        // GET: Ponto/Details/5
+        // GET: Pontos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,16 +38,16 @@ namespace SGT.Controllers
             return View(ponto);
         }
 
-        // GET: Ponto/Create
+        // GET: Pontos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Ponto/Create
+        // POST: Pontos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Nome,Latitude,Longitude")] Ponto ponto)
+        public async Task<IActionResult> Create([Bind("Nome,Latitude,Longitude,Ativo,id")] Ponto ponto)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +58,7 @@ namespace SGT.Controllers
             return View(ponto);
         }
 
-        // GET: Ponto/Edit/5
+        // GET: Pontos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,10 +74,10 @@ namespace SGT.Controllers
             return View(ponto);
         }
 
-        // POST: Ponto/Edit/5
+        // POST: Pontos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Nome,Latitude,Longitude")] Ponto ponto)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Latitude,Longitude,Ativo,id")] Ponto ponto)
         {
             if (id != ponto.id)
             {
@@ -108,7 +107,7 @@ namespace SGT.Controllers
             return View(ponto);
         }
 
-        // GET: Ponto/Delete/5
+        // GET: Pontos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,14 +125,18 @@ namespace SGT.Controllers
             return View(ponto);
         }
 
-        // POST: Ponto/Delete/5
+        // POST: Pontos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var ponto = await _context.Pontos.FindAsync(id);
-            _context.Pontos.Remove(ponto);
-            await _context.SaveChangesAsync();
+            if (ponto != null)
+            {
+                _context.Pontos.Remove(ponto);
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Index));
         }
 

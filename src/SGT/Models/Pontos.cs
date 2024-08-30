@@ -9,4 +9,5 @@ public class Ponto : Entidade
     public string Nome { get; set; }
     public string Latitude { get; set; }
     public string Longitude { get; set; }
+    public bool Ativo { get; set; }
 }

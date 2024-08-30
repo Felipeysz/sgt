@@ -1,26 +1,28 @@
 ﻿@model IEnumerable<SGT.Models.Ponto>
 
 @{
-    ViewData["Title"] = "Pontos";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Pontos</h1>
+<h1>Lista</h1>
 
 <p>
-    <a href="@Url.Action("Create")" class="btn btn-primary">Criar novo Ponto</a>
+    <a asp-action="Create">Novo</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.First().Nome)
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().Latitude)
+                @Html.DisplayNameFor(model => model.Latitude)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().Longitude)
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
             </th>
             <th></th>
         </tr>
@@ -39,9 +41,12 @@
                     @Html.DisplayFor(modelItem => item.Longitude)
                 </td>
                 <td>
-                    <a href="@Url.Action("Details", new { id = item.id })" class="btn btn-info">Detalhes</a>
-                    <a href="@Url.Action("Edit", new { id = item.id })" class="btn btn-warning">Editar</a>
-                    <a href="@Url.Action("Delete", new { id = item.id })" class="btn btn-danger">Deletar</a>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Detalhar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Deletar</a>
                 </td>
             </tr>
         }
